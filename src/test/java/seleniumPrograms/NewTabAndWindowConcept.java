@@ -9,11 +9,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class NewTabAndWindowConcept {
 
 	public static void main(String[] args) {
-		// Setting driver property
+		// Setting driver executable system property
 		System.setProperty("webdriver.chrome.driver",
 				"C:/Users/deepa/Downloads/Browser Drivers/Chrome Drivers/chromedriver.exe");
-		System.setProperty("webdriver.chrome.silentOutput", "true"); // To suppress the Chrome logs on console before
-																		// before launch
+		// To suppress the Chrome logs on console before launch
+		System.setProperty("webdriver.chrome.silentOutput", "true");
 
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
@@ -34,14 +34,12 @@ public class NewTabAndWindowConcept {
 		System.out.println("child tab: " + child);
 
 		newTab.get("https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java/4.0.0-alpha-3");
-		newTab.close();
+		newTab.close();  // Closing newly opened Tab/Window
 
- 		driver.switchTo().window(parent);
+		driver.switchTo().window(parent);
 		googleSearchTxt.clear();
 		googleSearchTxt.sendKeys("hey I am using Selenium4");
-		
+
 		driver.close();
-
 	}
-
 }
