@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -31,15 +32,24 @@ public class TakeElementScreenshotConcept {
 		takeElementScreenshot(emailTxt, "emailTxtElement");
 		takeElementScreenshot(nextBtn, "nextBtnElement");
 
+		takeElementScreenshotUsingTakesScreenShot(nextBtn, "nextBtn1");
+
 		driver.close();
 	}
 
 	private static void takeElementScreenshot(WebElement element, String fileName) throws IOException {
 		// Taking WebElement screenshot
 		File srcFile = element.getScreenshotAs(OutputType.FILE);
-
 		// Copying at destination file
 		FileHandler.copy(srcFile, new File("./screenshots/" + fileName + ".png"));
+	}
 
+	private static void takeElementScreenshotUsingTakesScreenShot(WebElement element, String fileName)
+			throws IOException {
+
+		// Taking WebElement screenshot using TakesScreenShot Interface
+		File srcFile = ((TakesScreenshot) element).getScreenshotAs(OutputType.FILE);
+		// Copying at destination file
+		FileHandler.copy(srcFile, new File("./screenshots/" + fileName + ".png"));
 	}
 }
